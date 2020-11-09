@@ -112,6 +112,29 @@ public class Colony {
     	if(Ant.random().nextInt(100) + 1 <= 3) {
     		addAnt(new BalaAnt(antCount, new Location(0, 0)));
     	}
+    	
+    	// Iterate through all ants and perform their actions
+    	Iterator<Ant> itr = ants.iterator(); 	
+      	itr.next(); // First ant is always queen
+    	
+    	while(itr.hasNext()) {
+    		Ant ant = itr.next();
+    		
+    		if(ant.getAge() > ANT_MAX_AGE) {
+    			ant.setAlive(false);
+    		}
+    		
+    		if(!ant.isAlive()) {
+    			grid[ant.getLocation().getX()][ant.getLocation().getY()].removeAnt(ant);
+    			itr.remove();
+    			System.out.println("ANT " + ant.getId() + " --- died.");
+    			continue;
+    		}
+    		
+    		((ActionableAnt) ant).performAction(grid, ants);
+    		
+    		ant.setAge(ant.getAge() + 1);
+    	}
     }
 
 }

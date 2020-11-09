@@ -107,6 +107,11 @@ public class Colony {
     		System.out.println("Queen died of starvation.");
     		return;
     	}
+    	
+    	// 3% chance of BalaAnt spawning
+    	if(Ant.random().nextInt(100) + 1 <= 3) {
+    		addAnt(new BalaAnt(antCount, new Location(0, 0)));
+    	}
     }
 
 }

@@ -85,7 +85,28 @@ public class Colony {
     }
     
     public void update(int turns) {
-
+    	queenAnt.setAge(turns);
+    	
+    	// Check if queen died of old age
+    	if(queenAnt.getAge() >= QUEEN_MAX_AGE) {
+    		queenAnt.setAlive(false);
+    		System.out.println("Queen died of old age.");
+    		return;
+    	}
+    	
+    	// Check if its a new day
+    	if(turns % 10 == 0) {
+    		Ant hatchedAnt = queenAnt.hatchAnt(antCount);
+    		addAnt(hatchedAnt);
+    		System.out.println("ANT " + hatchedAnt.getId() + " --- hatched.");
+    	}
+    	
+    	// Check if queen eats
+    	if(!queenAnt.eat(grid[13][13])) {
+    		queenAnt.setAlive(false);
+    		System.out.println("Queen died of starvation.");
+    		return;
+    	}
     }
 
 }

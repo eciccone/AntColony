@@ -84,6 +84,17 @@ public class Colony {
     	antCount = 0;
     }
     
+    private void decreasePheromone() {
+    	for(int x = 0; x < grid.length; x++) {
+    		for(int y = 0; y < grid[x].length; y++) {
+    			if(grid[x][y].getPheromoneLevel() > 0) {
+    				int pheromoneLevel = grid[x][y].getPheromoneLevel() / 2;
+    				grid[x][y].setPheromoneLevel(pheromoneLevel);
+    			}
+    		}
+    	}
+    }
+    
     public void update(int turns) {
     	queenAnt.setAge(turns);
     	
@@ -99,6 +110,7 @@ public class Colony {
     		Ant hatchedAnt = queenAnt.hatchAnt(antCount);
     		addAnt(hatchedAnt);
     		System.out.println("ANT " + hatchedAnt.getId() + " --- hatched.");
+    		decreasePheromone();
     	}
     	
     	// Check if queen eats

@@ -9,7 +9,7 @@ public class Ant {
     private boolean alive;
     private Location location;
     
-    private static Random random = new Random(5151994);
+    private static Random random = new Random();
 
     public Ant(int id, Location location) {
         setId(id);

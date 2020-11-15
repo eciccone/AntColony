@@ -11,7 +11,7 @@ public class QueenAnt extends Ant {
 		
 		if(randomNumber <= 40)
 			return new ForagerAnt(antCount, new Location(13, 13));
-		else if(randomNumber <= 50)
+		else if(randomNumber <= 45)
 			return new ScoutAnt(antCount, new Location(13, 13));
 		else
 			return new SoldierAnt(antCount, new Location(13, 13));

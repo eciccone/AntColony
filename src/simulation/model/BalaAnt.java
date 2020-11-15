@@ -1,9 +1,6 @@
 package simulation.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Random;
-import java.util.Stack;
 
 import simulation.util.Moves;
 
@@ -33,10 +30,10 @@ public class BalaAnt extends MoveableAnt implements ActionableAnt {
 		}
 		
 		if(possibleTargets.size() > 0) {
-			Ant antToAttack = possibleTargets.get(new Random().nextInt(possibleTargets.size()));
+			Ant antToAttack = possibleTargets.get(Ant.random().nextInt(possibleTargets.size()));
 			
 			// 50% chance of successfully killing enemy.
-			if(new Random().nextBoolean()) {
+			if(Ant.random().nextBoolean()) {
 				antToAttack.setAlive(false);
 				
 				// Handle if ForagerAnt was carrying food

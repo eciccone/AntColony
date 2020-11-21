@@ -81,6 +81,7 @@ public class Colony {
     	}
     	
     	ants.clear();
+    	queenAnt = null;
     	antCount = 0;
     }
     

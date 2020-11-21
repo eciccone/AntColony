@@ -36,6 +36,7 @@ public class Simulation implements SimulationEventListener, ActionListener {
 	public void step() {
 		turns++;
 		colony.update(turns);
+		antSimGUI.setTime("Turns: " + turns + " (" + (turns / 10) + " Days)"); 
 		System.out.println("Update colony --- Turn Count: " + turns);
 	}
 
@@ -53,6 +54,7 @@ public class Simulation implements SimulationEventListener, ActionListener {
 
 			colony.normalSetup();
 			initializedColony = true;
+			antSimGUI.setTime("Turns: " + turns + " (" + (turns / 10) + " Days)");
 		} else if (simEvent.getEventType() == SimulationEvent.RUN_EVENT) {
 			if (initializedColony) {
 				if (timer.isRunning()) {

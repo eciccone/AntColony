@@ -15,7 +15,7 @@ public class SoldierAnt extends MoveableAnt implements ActionableAnt {
 	public void performAction(ColonyNode[][] grid, LinkedList<Ant> ants) {
 		ColonyNode node = grid[getLocation().getX()][getLocation().getY()];
 		
-		if(enemiesInRange(node)) {
+		if(node.getBalaCount() > 0) {
 			attackEnemy(grid, ants);
 		} else {
 			moveTowardsBala(grid);
@@ -55,10 +55,6 @@ public class SoldierAnt extends MoveableAnt implements ActionableAnt {
 			move(grid, Moves.getRestrictedMoves(grid, getLocation()));
 		}
 		
-	}
-
-	private boolean enemiesInRange(ColonyNode node) {
-		return node.getBalaCount() > 0;
 	}
 	
 	private boolean isAttackableEnemy(Ant ant) {

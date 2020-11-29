@@ -44,6 +44,8 @@ public class BalaAnt extends MoveableAnt implements ActionableAnt {
 					}
 				}
 			}
+		} else {
+			move(grid, Moves.getUnrestrictedMoves(getLocation()));
 		}
 	}
 

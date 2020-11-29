@@ -35,6 +35,8 @@ public class SoldierAnt extends MoveableAnt implements ActionableAnt {
 			
 			if(Ant.random().nextBoolean())
 				antToAttack.setAlive(false);
+		} else {
+			moveTowardsBala(grid);
 		}
 	}
 	

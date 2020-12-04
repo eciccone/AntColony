@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import simulation.model.ColonyNode;
 import simulation.model.Location;
 
+/**
+ * A utility class that uses static methods to calculate acceptable locations
+ * throughout the ant colony.
+ * 
+ * @author eddie
+ *
+ */
 public class Moves {
 
 	private static final int LOWER_BOUND = 0;
@@ -12,7 +19,7 @@ public class Moves {
 	private static final int UPPER_BOUND = 26;
 
 	/**
-	 * Gets and returns a list of all the adjacent locations. 
+	 * Gets and returns a list of all the adjacent locations.
 	 * 
 	 * @param location The starting location
 	 * @return List of adjacent locations
@@ -24,7 +31,7 @@ public class Moves {
 			for (int yOffset = -1; yOffset <= 1; yOffset++) {
 				int x = location.getX() + xOffset;
 				int y = location.getY() + yOffset;
-				
+
 				if (inBounds(x, y) && acceptableOffset(xOffset, yOffset))
 					moves.add(new Location(x, y));
 			}
@@ -32,31 +39,32 @@ public class Moves {
 
 		return moves;
 	}
-	
+
 	/**
-	 * Gets and returns a list of all the adjacent locations in which the ColonyNode has been discovered.
-	 *  
-	 * @param grid The two-dimensional array that makes up the colony
+	 * Gets and returns a list of all the adjacent locations in which the ColonyNode
+	 * has been discovered.
+	 * 
+	 * @param grid     The two-dimensional array that makes up the colony
 	 * @param location The starting location
 	 * @return List of discovered locations
 	 */
 	public static ArrayList<Location> getRestrictedMoves(ColonyNode[][] grid, Location location) {
 		ArrayList<Location> moves = new ArrayList<Location>();
-		
-		for(int xOffset = -1;  xOffset <= 1; xOffset++) {
+
+		for (int xOffset = -1; xOffset <= 1; xOffset++) {
 			for (int yOffset = -1; yOffset <= 1; yOffset++) {
 				int x = location.getX() + xOffset;
 				int y = location.getY() + yOffset;
-				
+
 				if (inBounds(x, y) && acceptableOffset(xOffset, yOffset)) {
 					ColonyNode node = grid[x][y];
 
-					if(node.isDiscovered())
+					if (node.isDiscovered())
 						moves.add(new Location(x, y));
 				}
 			}
 		}
-		
+
 		return moves;
 	}
 

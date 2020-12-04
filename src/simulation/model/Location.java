@@ -1,5 +1,11 @@
 package simulation.model;
 
+/**
+ * Location model.
+ * 
+ * @author eddie
+ *
+ */
 public class Location {
 
     private int x;

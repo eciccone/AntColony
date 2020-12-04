@@ -4,6 +4,12 @@ import java.util.LinkedList;
 
 import simulation.util.Moves;
 
+/**
+ * Bala ant model.
+ * 
+ * @author eddie
+ *
+ */
 public class BalaAnt extends MoveableAnt implements ActionableAnt {
 
 	public BalaAnt(int id, Location location) {
@@ -13,32 +19,39 @@ public class BalaAnt extends MoveableAnt implements ActionableAnt {
 	@Override
 	public void performAction(ColonyNode[][] grid, LinkedList<Ant> ants) {
 		ColonyNode node = grid[getLocation().getX()][getLocation().getY()];
-		
-		if(enemiesInRange(node)) {
+
+		if (enemiesInRange(node)) {
 			attackEnemy(grid, ants);
 		} else {
 			move(grid, Moves.getUnrestrictedMoves(getLocation()));
 		}
 	}
 
+	/**
+	 * Attacks a enemy ant that is in the same colony node. There is a chance that
+	 * the enemy ant is already dead, if so the BalaAnt will move randomly.
+	 * 
+	 * @param grid The colony grid
+	 * @param ants The ants in the colony
+	 */
 	private void attackEnemy(ColonyNode[][] grid, LinkedList<Ant> ants) {
 		LinkedList<Ant> possibleTargets = new LinkedList<Ant>();
-		
-		for(Ant ant : ants) {
-			if(isAttackableEnemy(ant) && ant.isAlive())
+
+		for (Ant ant : ants) {
+			if (isAttackableEnemy(ant) && ant.isAlive())
 				possibleTargets.add(ant);
 		}
-		
-		if(possibleTargets.size() > 0) {
+
+		if (possibleTargets.size() > 0) {
 			Ant antToAttack = possibleTargets.get(Ant.random().nextInt(possibleTargets.size()));
-			
+
 			// 50% chance of successfully killing enemy.
-			if(Ant.random().nextBoolean()) {
+			if (Ant.random().nextBoolean()) {
 				antToAttack.setAlive(false);
-				
+
 				// Handle if ForagerAnt was carrying food
-				if(antToAttack instanceof ForagerAnt) {
-					if(((ForagerAnt) antToAttack).isCarryingFood()) {
+				if (antToAttack instanceof ForagerAnt) {
+					if (((ForagerAnt) antToAttack).isCarryingFood()) {
 						ColonyNode node = grid[antToAttack.getLocation().getX()][antToAttack.getLocation().getY()];
 						node.setFoodAmount(node.getFoodAmount() + 1);
 					}
@@ -59,6 +72,7 @@ public class BalaAnt extends MoveableAnt implements ActionableAnt {
 		return node.getScoutCount() > 0 || node.getSoldierCount() > 0 || node.getForagerCount() > 0
 				|| node.isQueenPresent();
 	}
+
 	/**
 	 * Determines if a given ant is allowed to be attacked.
 	 * 
@@ -66,8 +80,7 @@ public class BalaAnt extends MoveableAnt implements ActionableAnt {
 	 * @return true if the ant is attackable, false otherwise
 	 */
 	private boolean isAttackableEnemy(Ant ant) {
-		return ant.getLocation().getX() == getLocation().getX() 
-				&& ant.getLocation().getY() == getLocation().getY() 
+		return ant.getLocation().getX() == getLocation().getX() && ant.getLocation().getY() == getLocation().getY()
 				&& !(ant instanceof BalaAnt);
 	}
 }

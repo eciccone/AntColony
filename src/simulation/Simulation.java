@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 /**
- * Simulation class controls the simulation. The gui actions are controlled here and is
- * responsible for executing the steps of the simulation.
+ * Simulation class controls the simulation. The gui actions are controlled here
+ * and is responsible for executing the steps of the simulation.
  * 
  * @author eddie ciccone
  *
@@ -33,13 +33,20 @@ public class Simulation implements SimulationEventListener, ActionListener {
 		antSimGUI.initGUI(colony.getColonyView());
 	}
 
+	/**
+	 * Updates the colony and increments the step. Each step each ant performs their
+	 * appropriate action.
+	 */
 	public void step() {
 		turns++;
 		colony.update(turns);
-		antSimGUI.setTime("Turns: " + turns + " (" + (turns / 10) + " Days)"); 
+		antSimGUI.setTime("Turns: " + turns + " (" + (turns / 10) + " Days)");
 		System.out.println("Update colony --- Turn Count: " + turns);
 	}
 
+	/**
+	 * Handles events depending on which button is clicked.
+	 */
 	@Override
 	public void simulationEventOccurred(SimulationEvent simEvent) {
 		if (simEvent.getEventType() == SimulationEvent.NORMAL_SETUP_EVENT) {
@@ -74,6 +81,9 @@ public class Simulation implements SimulationEventListener, ActionListener {
 		}
 	}
 
+	/**
+	 * Executes the step method on each iteration of the timer class.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (colony.getQueenAnt().isAlive()) {

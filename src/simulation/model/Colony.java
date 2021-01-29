@@ -4,7 +4,6 @@ import simulation.view.ColonyView;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * The ant colony.

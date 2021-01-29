@@ -3,7 +3,7 @@ The Ant Colony Simulation was my final project for my Data Structure and Algorit
 
 The combined individual behaviors of all the ants bring about the *emergence* of a **self organized system**: the colony itself. Each ant lives for about one year, except for the queen, which can live for 20 years or more. The colony can survive as long as the queen still lives, meaning the colony can also survive for 20 years or more.
 
-Since the individual ants only live for about a year, the colony isn't able to benefit from the wisdom of old "wise" ants. The colony lives simply because each individual ant  does what is has been programmed to do. A well ordered any society emerges from the synergistic actions of the individuals.
+Since the individual ants only live for about a year, the colony isn't able to benefit from the wisdom of old "wise" ants. The colony lives simply because each individual ant  does what is has been programmed to do. A well ordered ant society emerges from the synergistic actions of the individuals.
 
 The colony I created consist of a queen and her brood, which will have workers to gather food and scout the terrain surrounding the colony, and soldiers to protect the colony from enemies. The colony will start off with only the queen ant and a few workers and soldiers. Over time the colony will expand to function like a real ant colony.
 
